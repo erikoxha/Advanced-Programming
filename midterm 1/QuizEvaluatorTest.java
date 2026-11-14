@@ -41,13 +41,11 @@ class QuizEvaluator {
         try {
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.isBlank()) continue;
                 String[] parts = line.trim().split("\\s+");
                 String id = parts[0];
                 int score = (int) IntStream.range(0, correctAnswers.size())          // how many questions?
                     .filter(i -> parts[i+1].equals(correctAnswers.get(i)))         // student's answer i vs correct answer i
                     .count();
-
                 students.add(new Student(id, score));
             }
         } catch (IOException e) {
